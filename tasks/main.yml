@@ -1,0 +1,16 @@
+---
+
+- name: Check os compatability with this role
+  assert:
+    that: "ansible_os_family|lower == 'debian'"
+    msg: "{{ ansible_os_family }} is probably not supported by this role"
+
+
+- name: Install docker
+  import_tasks: install.yml
+
+- name: Configure docker
+  import_tasks: configure.yml
+
+- name: Setup Monitoring
+  import_tasks: monitoring.yml

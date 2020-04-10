@@ -1,0 +1,22 @@
+---
+
+- name: Install 90-docker.conf to /etc/sysctl.d/90-docker.conf
+  template:
+    src: 90-docker.j2
+    dest: /etc/sysctl.d/90-docker.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Install daemon.json to /etc/docker/
+  template:
+    src: daemon.json.j2
+    dest: /etc/docker/daemon.json
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Create docker group
+  group:
+    name: docker
+    state: present
